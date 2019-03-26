@@ -4,8 +4,9 @@
   "description": "",
   "main": "./src/index.tsx",
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc --watch",
+    "copy:package": "mkdir -p dist && cp package.json ./src/index.d.ts './dist/'",
+    "build": "npm run copy:package && tsc",
+    "watch": "npm run copy:package &&  tsc --watch",
     "verify": "eslint --max-warnings=0 --ext .js,.jsx,.ts,.tsx 'src/'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

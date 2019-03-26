@@ -1,12 +1,12 @@
 class Tap {
     constructor(
-        private readonly id: string,
-        private readonly dateTimeUTC: string,
-        private readonly tapType: Type,
-        private readonly stopId: string,
-        private readonly companyId: string,
-        private readonly busID: string,
-        private readonly pan: string
+        readonly id: string,
+        readonly dateTimeUTC: string,
+        readonly tapType: Type,
+        readonly stopId: string,
+        readonly companyId: string,
+        readonly busID: string,
+        readonly pan: string
     ) {
     }
 

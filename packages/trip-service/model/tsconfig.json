@@ -4,7 +4,6 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
-//    "rootDir": ".",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,
@@ -12,8 +11,7 @@
     "allowJs": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "typeRoots": ["node_modules/@types"],
-    "jsx": "preserve"
+    "typeRoots": ["node_modules/@types"]
   },
   "include": [
     "./src/**/*"
