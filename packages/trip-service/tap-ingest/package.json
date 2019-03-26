@@ -7,7 +7,8 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "verify": "eslint --max-warnings=0 --ext .js,.jsx,.ts,.tsx 'src/'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:local": "npm run build && functions deploy tap-ingest --trigger-http ----entry-point=ingest -S=./dist"
   },
   "author": "Kenny Chen",
   "license": "MIT",
@@ -25,3 +26,6 @@
     "typescript-eslint-parser": "^22.0.0"
   }
 }
+
+
+//functions call tap-ingest --data='{"tap":"this is a tap"}'
