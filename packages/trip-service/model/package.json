@@ -1,5 +1,5 @@
 {
-  "name": "trip-model",
+  "name": "@trip-report/model",
   "version": "0.0.0",
   "description": "",
   "main": "./src/index.tsx",

@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import {Tap} from "trip-model";
+import {Tap} from "@trip-report/model";
 
 
 
