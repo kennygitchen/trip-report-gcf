@@ -1,0 +1,23 @@
+extends:
+  - react-app
+parser: babel-eslint
+parserOptions:
+  sourceType: module
+  typescript: true
+overrides:
+  - files:
+      - '*.ts'
+      - '*.tsx'
+    parser: '@typescript-eslint/parser'
+    plugins:
+      - '@typescript-eslint'
+    rules:
+      no-unused-vars: 'off'
+      no-useless-constructor: 'off'
+      no-array-constructor: 'off'
+      '@typescript-eslint/no-unused-vars': ['error', { 'vars': 'all', 'args': 'after-used', 'ignoreRestSiblings': false }]
+      '@typescript-eslint/no-useless-constructor': 'error'
+
+    parserOptions:
+      ecmaFeatures:
+        jsx: true
