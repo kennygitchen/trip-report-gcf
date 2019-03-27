@@ -3,19 +3,18 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "dist",
-//    "rootDir": ".",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,
     "preserveConstEnums": true,
-    "allowJs": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
   "include": [
-    "./src/**/*"
+    "./index.ts"
   ],
   "exclude": [
     "node_modules"
