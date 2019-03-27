@@ -8,10 +8,8 @@
     "build:local": "webpack --config webpack.dev.config.js",
     "verify": "eslint --max-warnings=0 --ext .js,.jsx,.ts,.tsx 'src/'",
     "test": "echo \"Error: no test specified\" && exit 1",
-
     "deploy:local:project": "functions config set projectId gcf-trip-report",
     "deploy:local": "npm run build:local && npm run deploy:local:project && functions deploy tap-ingest --trigger-http ----entry-point=ingest -S=./dist",
-
     "deploy:dev": "npm run build:local && npm run deploy:dev:project && gcloud functions deploy tap-ingest --entry-point=ingest --source=./dist --trigger-http --runtime=nodejs8",
     "deploy:dev:project": "gcloud config set project gcf-trip-report"
   },
@@ -21,7 +19,7 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "@trip-report/model": "file:../model/dist",
+    "@trip-report/model": "file:../model",
     "@types/express": "^4.0.0",
     "@types/jest": "^24.0.5",
     "@types/node": "^11.9.4",

@@ -24,6 +24,6 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
-        new CopyWebpackPlugin([{from: 'package.deploy.json', to: 'package.json', toType: 'file'}])
+        new CopyWebpackPlugin([{from: 'package.release.json', to: 'package.json', toType: 'file'}])
     ]
 };
