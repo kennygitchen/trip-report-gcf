@@ -15,12 +15,12 @@ module.exports = {
     },
     module: {
         rules: [
-            {test: /\.(js|jsx)$/, use: ['babel-loader'], exclude: /node_modules/},
+            {test: /\.(js)$/, use: ['babel-loader'], exclude: /node_modules/},
             {test: /\.ts?$/, use: ['awesome-typescript-loader']},  // handle ts and tsx typescript files
         ]
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json']
+        extensions: ['.ts', '.js', '.json']
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
