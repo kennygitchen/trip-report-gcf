@@ -1,5 +1,5 @@
 {
-  "name": "@trip-report/tap-ingerst",
+  "name": "@trip-report/tap-ingest",
   "version": "0.0.0",
   "description": "",
   "main": "./src/index.tsx",
@@ -8,7 +8,12 @@
     "build:local": "webpack --config webpack.dev.config.js",
     "verify": "eslint --max-warnings=0 --ext .js,.jsx,.ts,.tsx 'src/'",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy:local": "npm run build:local && functions deploy tap-ingest --trigger-http ----entry-point=ingest -S=./dist"
+
+    "deploy:local:project": "functions config set projectId gcf-trip-report",
+    "deploy:local": "npm run build:local && npm run deploy:local:project && functions deploy tap-ingest --trigger-http ----entry-point=ingest -S=./dist",
+
+    "deploy:dev": "npm run build:local && npm run deploy:dev:project && gcloud functions deploy tap-ingest --entry-point=ingest --source=./dist --trigger-http --runtime=nodejs8",
+    "deploy:dev:project": "gcloud config set project gcf-trip-report"
   },
   "author": "Kenny Chen",
   "license": "MIT",

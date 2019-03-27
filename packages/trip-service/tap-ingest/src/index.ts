@@ -26,5 +26,8 @@ function ingest(req: Request, res: Response) {
 
 export {ingest}
 
-
+// local testing
 //functions call tap-ingest --data='{"tap":"1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559"}'
+
+// dev testing
+//gcloud functions call tap-ingest --data='{"tap":"1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559"}'
