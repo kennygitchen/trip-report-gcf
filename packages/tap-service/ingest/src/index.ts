@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
-import {Tap} from "@trip-report/model";
-import {TapDatastore} from "@trip-report/tap-datastore";
+import {Tap} from "@tap-service/model";
+import {TapDatastore} from "@tap-service/datastore";
 
 
 async function ingest(req: Request, res: Response) {
