@@ -42,7 +42,6 @@ typings/
 # ignore generated typings
 *.d.ts
 *.js.map
-*.js
 
 # Optional npm cache directory
 .npm
