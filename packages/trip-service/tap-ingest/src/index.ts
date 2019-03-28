@@ -1,27 +1,33 @@
 import {Request, Response} from "express";
 import {Tap} from "@trip-report/model";
+import {TapDatastore} from "@trip-report/tap-datastore";
 
 
-
-function ingest(req: Request, res: Response) {
+async function ingest(req: Request, res: Response) {
     let tap = req.body.tap;
+    let error = null;
+
     if (!tap) {
-        res.status(400).send('No tap defined!');
+        console.error(`Error trying to save Tap, tap=${tap}`);
+        res.status(400).send('No Tap found');
         return;
     }
 
-    //
-    // parse tap and write to DB
-    //
-    //1. parse tap
-    let newTap = Tap.fromCSV(tap);
+    try {
+        // save to database
+        let tapDatastore = new TapDatastore();
+        const newTapId = await tapDatastore.set(Tap.fromCSV(tap));
+        console.log(`Tap saved, id=${newTapId}`);
 
-    //2. write to db
-    console.log(`push tap into DB, tap=${newTap}`);
-
-    //3. send event out
-    res.status(200).send('Tap has been processed successfully.');
-
+        // retrieve to confirm
+        const newTap: Tap = await tapDatastore.get(newTapId);
+        console.log(`confirm saved, ${newTap.toJSON()}`);
+        res.status(200).send('Tap has been processed successfully.');
+    } catch (err) {
+        error = err;
+        console.error(`Error trying to save Tap, tap=${tap}`, error);
+        res.status(400).send('Error trying to save Tap.');
+    }
 }
 
 export {ingest}

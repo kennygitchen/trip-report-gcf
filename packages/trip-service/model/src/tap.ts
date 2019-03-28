@@ -28,6 +28,26 @@ class Tap {
             throw e;
         }
     }
+    
+    static fromJSON(json: string): Tap {
+        const tapJs = JSON.parse(json);
+        return new Tap(
+            tapJs.id,   
+            tapJs.dateTimeUTC,
+            // @ts-ignore
+            Type[tapJs.tapType],
+            tapJs.stopId,
+            tapJs.companyId,
+            tapJs.busID,
+            tapJs.pan
+        );
+    }
+
+    toJSON() {
+        let js = Object.assign({}, this); // clone the object
+        delete js.toJSON; // remove this function from stringify
+        return JSON.stringify(js);
+    }
 }
 
 enum Type {

@@ -4,26 +4,29 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
 module.exports = {
-    entry: {
-        index: './src/index.ts'
-    },
-    output: {
-        // filename: '[name].bundle.[hash].js',
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'dist'),
-        libraryTarget: 'commonjs'
-    },
-    module: {
-        rules: [
-            {test: /\.(js)$/, use: ['babel-loader'], exclude: /node_modules/},
-            {test: /\.ts?$/, use: ['awesome-typescript-loader']},  // handle ts and tsx typescript files
-        ]
-    },
-    resolve: {
-        extensions: ['.ts', '.js', '.json']
-    },
-    plugins: [
-        new CleanWebpackPlugin(['dist']),
-        new CopyWebpackPlugin([{from: 'package.release.json', to: 'package.json', toType: 'file'}])
+  entry: {
+    index: './src/index.ts'
+  },
+  output: {
+    // filename: '[name].bundle.[hash].js',
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
+    libraryTarget: 'commonjs'
+  },
+  module: {
+    rules: [
+      {test: /\.(js)$/, use: ['babel-loader'], exclude: /node_modules/},
+      {test: /\.ts?$/, use: ['awesome-typescript-loader']},  // handle ts and tsx typescript files
     ]
+  },
+  externals: {
+    '@google-cloud/datastore': '@google-cloud/datastore'
+  },
+  resolve: {
+    extensions: ['.ts', '.js', '.json']
+  },
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new CopyWebpackPlugin([{from: 'package.release.json', to: 'package.json', toType: 'file'}])
+  ]
 };
