@@ -1,0 +1,19 @@
+{
+  "name": "@trip-service/ingest",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kenny Chen",
+  "license": "MIT",
+  "dependencies": {
+    "@trip-service/model": "file:./lib/trip-service-model-0.0.0.tgz"
+  },
+  "devDependencies": {
+    "@trip-service/model": "file:../model",
+    "serverless-google-cloudfunctions": "*",
+    "serverless-hooks-plugin": "^1.1.0"
+  }
+}
