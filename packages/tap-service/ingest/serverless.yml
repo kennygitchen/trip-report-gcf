@@ -21,7 +21,9 @@ custom:
     before:deploy:createDeploymentArtifacts:
       # change this into a proper script that iterates through all the
       # local dependencies and move them into lib folder
+      - "npm run build:types"
       - "if [ -d ../model ]; then npm pack ../model; mv *.tgz ./lib/; fi"
+      - "if [ -d ../datastore ]; then npm pack ../datastore; mv *.tgz ./lib/; fi"
 
 # needs more granular excluding in production as only the serverless provider npm
 # package should be excluded (and not the whole node_modules directory)
@@ -32,10 +34,10 @@ package:
     - .git/**
 
 functions:
-  trip_ingest:
-    handler: trip_ingest
+  tap_ingest:
+    handler: ingest
     events:
-      - http: path
+    - http: path
   # NOTE: the following uses an "event" event (pubSub event in this case).
   # Please create the corresponding resources in the Google Cloud
   # before deploying this service through Serverless

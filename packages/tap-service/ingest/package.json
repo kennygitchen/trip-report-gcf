@@ -5,21 +5,17 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "copy:package": "mkdir -p dist && cp package.json './dist/'",
     "build:types": "tsc --declaration",
-    "build:local": "npm run build:types && webpack --config webpack.dev.config.js",
     "verify": "eslint --max-warnings=0 --ext .js,.jsx,.ts,.tsx 'src/'",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy:local:project": "functions config set projectId gcf-trip-report",
-    "deploy:local": "npm run build:local && npm run deploy:local:project && functions deploy tap-ingest --trigger-http ----entry-point=ingest -S=./dist",
-    "deploy:dev": "npm run build:local && npm run deploy:dev:project && gcloud functions deploy tap-ingest --entry-point=ingest --source=./dist --trigger-http --runtime=nodejs8",
-    "deploy:dev:project": "gcloud config set project gcf-trip-report"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kenny Chen",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4",
-    "@google-cloud/datastore": "^3.1.2"
+    "@google-cloud/datastore": "^3.1.2",
+    "@tap-service/model": "file:./lib/tap-service-model-0.0.0.tgz",
+    "@tap-service/datastore": "file:./lib/tap-service-datastore-0.0.0.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -33,19 +29,8 @@
     "@types/node": "^11.12.0",
     "@typescript-eslint/eslint-plugin": "^1.4.2",
     "@typescript-eslint/parser": "^1.4.2",
-    "awesome-typescript-loader": "^5.2.1",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
-    "babel-loader": "^8.0.4",
-    "clean-webpack-plugin": "^0.1.19",
-    "copy-webpack-plugin": "^4.5.3",
-    "source-map-loader": "^0.2.4",
     "typescript": "^3.3.3",
-    "typescript-eslint-parser": "^22.0.0",
-    "uglifyjs-webpack-plugin": "^2.0.1",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9",
-    "webpack-merge": "^4.1.4"
+    "serverless-google-cloudfunctions": "*",
+    "serverless-hooks-plugin": "^1.1.0"
   }
 }
