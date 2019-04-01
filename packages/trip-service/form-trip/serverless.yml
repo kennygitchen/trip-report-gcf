@@ -1,4 +1,4 @@
-service: trip-service--receive-trip # NOTE: Don't put the word "google" in here
+service: trip-service--form-trip # NOTE: Don't put the word "google" in here
 
 provider:
   name: google
@@ -21,7 +21,9 @@ custom:
     before:deploy:createDeploymentArtifacts:
       # change this into a proper script that iterates through all the
       # local dependencies and move them into lib folder
-      - "if [ -d ../model ]; then npm pack ../model; mv *.tgz ./lib/; fi"
+      - "npm run build:types"
+      - "if [ -d ../../datastore-service/model ]; then npm pack ../../datastore-service/model; mv *.tgz ./lib/; fi"
+      - "if [ -d ../../datastore-service/datastore ]; then npm pack ../../datastore-service/datastore; mv *.tgz ./lib/; fi"
 
 # needs more granular excluding in production as only the serverless provider npm
 # package should be excluded (and not the whole node_modules directory)
@@ -32,8 +34,8 @@ package:
     - .git/**
 
 functions:
-  trip_ingest:
-    handler: trip_ingest
+  form_trip:
+    handler: form_trip
     events:
       - http: path
   # NOTE: the following uses an "event" event (pubSub event in this case).
