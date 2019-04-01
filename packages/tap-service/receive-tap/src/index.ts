@@ -1,9 +1,9 @@
 import {Request, Response} from "express";
-import {Tap} from "@tap-service/model";
-import {TapDatastore} from "@tap-service/datastore";
+import {Tap} from "@datastore-service/model";
+import {TapDatastore} from "@datastore-service/datastore";
 
 
-async function ingest(req: Request, res: Response) {
+async function receive_tap(req: Request, res: Response) {
     let tap = req.body.tap;
     let error = null;
 
@@ -30,7 +30,7 @@ async function ingest(req: Request, res: Response) {
     }
 }
 
-export {ingest}
+export {receive_tap}
 
 // local testing
 //functions call tap-ingest --data='{"tap":"1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559"}'

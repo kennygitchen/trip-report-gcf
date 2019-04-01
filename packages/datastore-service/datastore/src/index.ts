@@ -1,6 +1,6 @@
 import {Datastore} from "@google-cloud/datastore";
 import {entity} from "@google-cloud/datastore/build/src/entity";
-import {Tap} from "@tap-service/model";
+import {Tap} from "@datastore-service/model";
 
 
 interface TapEntity {
