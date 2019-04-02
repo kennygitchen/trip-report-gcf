@@ -1,11 +1,11 @@
 {
-  "name": "@trip-service/form-trip",
+  "name": "@trip-service/create-trip",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
-    "preinstall": "npm pack ../../datastore-service/model && npm pack ../../datastore-service/datastore; mv *.tgz ./lib/ && exit 0;",
+    "preinstall": "npm pack ../../datastore-service/model && npm pack ../../datastore-service/datastore && npm pack ../../shared-service/logging && mv *.tgz ./lib/ && exit 0;",
     "build:types": "tsc --declaration",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,8 +13,10 @@
   "license": "MIT",
   "dependencies": {
     "@google-cloud/datastore": "^3.1.2",
+    "@google-cloud/pubsub": "^0.28.1",
     "@datastore-service/model": "file:./lib/datastore-service-model-0.0.0.tgz",
-    "@datastore-service/datastore": "file:./lib/datastore-service-datastore-0.0.1.tgz"
+    "@datastore-service/datastore": "file:./lib/datastore-service-datastore-0.0.1.tgz",
+    "@shared-service/logging": "file:./lib/shared-service-logging-0.0.0.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -23,6 +25,9 @@
     "@babel/preset-typescript": "^7.1.0",
     "@datastore-service/datastore": "file:../../datastore-service/datastore",
     "@datastore-service/model": "file:../../datastore-service/model",
+    "@shared-service/logging": "file:../../shared-service/logging",
+    "@google-cloud/datastore": "^3.1.2",
+    "@google-cloud/pubsub": "^0.28.1",
     "@types/express": "^4.0.0",
     "@types/jest": "^24.0.5",
     "@types/node": "^11.12.2",

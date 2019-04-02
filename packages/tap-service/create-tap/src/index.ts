@@ -7,7 +7,7 @@ import {Logger} from '@shared-service/logging';
 
 const TOPIC = 'tap-created';
 
-async function receive_tap(req: Request, res: Response) {
+async function create_tap(req: Request, res: Response) {
     const logger = new Logger();
     const tap = req.body.tap;
     let error = null;
@@ -42,7 +42,7 @@ async function receive_tap(req: Request, res: Response) {
     }
 }
 
-export {receive_tap}
+export {create_tap}
 
 // local testing
 //functions call tap-ingest --data='{"tap":"1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559"}'
