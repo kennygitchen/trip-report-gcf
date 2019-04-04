@@ -5,6 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
+    "clean": "rm -fr build/",
     "preinstall": "npm pack ../../datastore-service/model && npm pack ../../datastore-service/datastore && npm pack ../../shared-service/messaging && npm pack ../../shared-service/logging && mv *.tgz ./lib/ && exit 0;",
     "build:types": "tsc --declaration",
     "verify": "eslint --max-warnings=0 --ext .js,.jsx,.ts,.tsx 'src/'",

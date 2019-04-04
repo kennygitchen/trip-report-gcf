@@ -1,6 +1,12 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "bootstrap": "npm run clean && lerna bootstrap",
+    "clean": "lerna clean --yes && lerna run clean",
+    "build:dev": "lerna run build:dev",
+    "deploy:dev": "lerna exec --scope '@*/*--gcf' -- serverless deploy"
+  },
   "devDependencies": {
     "lerna": "^3.13.1"
   }

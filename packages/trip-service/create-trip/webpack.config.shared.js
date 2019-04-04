@@ -5,11 +5,16 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const GeneratePackageJsonPlugin = require('generate-package-json-webpack-plugin');
 
 const buildProdJson = () => {
-// read pacage json
+
+  // read pacage json
   const fs = require("fs");
   const prodPackageJson = JSON.parse(fs.readFileSync("package.json"));
+
+  // modify the name of the module, prefix with @gcf
+  prodPackageJson.name = `${prodPackageJson.name}--gcf`;
   delete prodPackageJson.devDependencies;
   delete prodPackageJson.scripts;
+
   return prodPackageJson;
 }
 

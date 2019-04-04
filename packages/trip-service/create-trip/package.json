@@ -5,9 +5,9 @@
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
+    "clean": "rm -fr build/",
     "build:dev": "webpack --config webpack.config.dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy:dev": "npm run build:dev && cd build && serverless deploy && cd .."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kenny Chen",
   "license": "MIT",

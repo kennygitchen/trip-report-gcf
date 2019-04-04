@@ -2,5 +2,11 @@
   "packages": [
     "packages/**"
   ],
+  "command": {
+    "bootstrap": {
+      "ignore": "*--gcf",
+      "npmClientArgs": ["--no-package-lock"]
+    }
+  },
   "version": "0.0.0"
 }
