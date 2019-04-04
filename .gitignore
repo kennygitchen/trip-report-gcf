@@ -43,6 +43,7 @@ typings/
 *.d.ts
 *.js.map
 index.js
+**/build/**
 **/src/*.js
 
 # Optional npm cache directory

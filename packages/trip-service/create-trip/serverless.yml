@@ -14,17 +14,6 @@ provider:
 
 plugins:
   - serverless-google-cloudfunctions
-  - serverless-hooks-plugin
-
-custom:
-  hooks:
-    before:deploy:createDeploymentArtifacts:
-      # change this into a proper script that iterates through all the
-      # local dependencies and move them into lib folder
-      - "npm run build:types"
-      - "if [ -d ../../datastore-service/model ]; then npm pack ../../datastore-service/model; mv *.tgz ./lib/; fi"
-      - "if [ -d ../../datastore-service/datastore ]; then npm pack ../../datastore-service/datastore; mv *.tgz ./lib/; fi"
-      - "if [ -d ../../shared-service/logging ]; then npm pack ../../shared-service/logging; mv *.tgz ./lib/; fi"
 
 # needs more granular excluding in production as only the serverless provider npm
 # package should be excluded (and not the whole node_modules directory)
