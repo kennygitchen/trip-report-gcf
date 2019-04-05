@@ -1,12 +1,14 @@
 class Tap {
     constructor(
-        readonly id: string,
+        readonly id: number = NaN,
+        readonly orderNo: string,
         readonly dateTimeUTC: string,
         readonly tapType: Type,
         readonly stopId: string,
         readonly companyId: string,
         readonly busID: string,
-        readonly pan: string
+        readonly pan: string,
+        readonly created?: number
     ) {
     }
 
@@ -14,6 +16,7 @@ class Tap {
         try {
             let tapStr = csv.split(",").map(s => s.trim());
             return new Tap(
+                undefined,
                 tapStr[0],
                 tapStr[1],
                 // @ts-ignore
@@ -28,19 +31,55 @@ class Tap {
             throw e;
         }
     }
-    
+
     static fromJSON(json: string): Tap {
-        const tapJs = JSON.parse(json);
+        const tapJs: Tap = JSON.parse(json);
         return new Tap(
-            tapJs.id,   
+            tapJs.id,
+            tapJs.orderNo,
             tapJs.dateTimeUTC,
             // @ts-ignore
             Type[tapJs.tapType],
             tapJs.stopId,
             tapJs.companyId,
             tapJs.busID,
-            tapJs.pan
+            tapJs.pan,
+            tapJs.created
         );
+    }
+
+    updateId(id: number): Tap {
+        if (!!this.id) {
+            throw new Error(`Error, 'id' field has already been set.`);
+        }
+        return new Tap(
+            id,
+            this.orderNo,
+            this.dateTimeUTC,
+            this.tapType,
+            this.stopId,
+            this.companyId,
+            this.busID,
+            this.pan,
+            this.created
+        )
+    }
+
+    updateCreated(created: number): Tap {
+        if (!!this.created) {
+            throw new Error(`Error, 'created' field has already been set.`);
+        }
+        return new Tap(
+            this.id,
+            this.orderNo,
+            this.dateTimeUTC,
+            this.tapType,
+            this.stopId,
+            this.companyId,
+            this.busID,
+            this.pan,
+            created
+        )
     }
 
     toJSON() {

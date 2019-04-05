@@ -30,7 +30,7 @@ async function create_tap(req: Request, res: Response) {
 
         // retrieve to confirm
         logger.begin(`Retrieve tap to confirm saving, id=${newTapId}`);
-        const newTap: Tap = await tapDatastore.get(newTapId);
+        const newTap: Tap = await tapDatastore.get(Number(newTapId));
         logger.end(`Retrieve tap to confirm saving, id=${newTapId}`, newTap.toJSON());
 
         logger.begin(`publish event event, topic=${TOPIC}, tapId=${newTapId}`);
