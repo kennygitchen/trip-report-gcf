@@ -5,7 +5,10 @@ import {sendMessage} from "@shared/messaging";
 import {Logger} from '@shared/logging';
 
 
-const TOPIC = 'tap-created';
+const TOPIC:string = process.env.TOPIC_TAP_CREATED || "";
+if(!TOPIC) {
+    throw new Error("TOPIC_TAP_CREATED not defined.");
+}
 
 async function create_tap(req: Request, res: Response) {
     const logger = new Logger();
@@ -48,4 +51,4 @@ export {create_tap}
 //functions call tap-ingest --data='{"tap":"1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559"}'
 
 // dev testing
-//gcloud functions call receive_tap --data='{"tap":"1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559"}'
+//gcloud functions call create_tap --data='{"tap":"1, 22-01-2018 13:00:00, ON, Stop1, Company1, Bus37, 5500005555555559"}'
