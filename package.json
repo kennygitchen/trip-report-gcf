@@ -5,7 +5,7 @@
     "bootstrap": "npm run clean && lerna bootstrap",
     "clean": "lerna clean --yes && lerna run clean",
     "build:dev": "lerna run build:dev",
-    "deploy:dev": "lerna exec --scope '@*/*--gcf' -- serverless deploy"
+    "deploy:dev": "export TOPIC_TAP_CREATED=tap-created; lerna exec --scope '@*/*--gcf' -- serverless deploy"
   },
   "devDependencies": {
     "lerna": "^3.13.1"

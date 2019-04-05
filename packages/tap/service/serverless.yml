@@ -11,6 +11,8 @@ provider:
   #
   # the path to the credentials file needs to be absolute
   credentials: ~/.gcloud/trip-report/trip-service-keyfile.json
+  environment:
+    TOPIC_TAP_CREATED: ${env:TOPIC_TAP_CREATED}
 
 plugins:
   - serverless-google-cloudfunctions

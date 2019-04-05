@@ -29,13 +29,13 @@ functions:
     events:
     - event:
         eventType: providers/cloud.pubsub/eventTypes/topic.publish
-        resource: projects/gcf-trip-report/topics/tap-created
+        resource: projects/gcf-trip-report/topics/${env:TOPIC_TAP_CREATED}
   delete_trip:
     handler: delete_trip
     events:
     - event:
         eventType: providers/cloud.pubsub/eventTypes/topic.publish
-        resource: projects/gcf-trip-report/topics/tap-created
+        resource: projects/gcf-trip-report/topics/${env:TOPIC_TAP_CREATED}
 
   # NOTE: the following uses an "event" event (pubSub event in this case).
   # Please create the corresponding resources in the Google Cloud
