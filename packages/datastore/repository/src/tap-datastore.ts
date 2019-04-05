@@ -1,6 +1,6 @@
 import {Datastore, Query} from "@google-cloud/datastore";
 import {Entity, entity} from "@google-cloud/datastore/build/src/entity";
-import {Tap} from "@datastore-service/model";
+import {Tap} from "@datastore/model";
 import {RunQueryInfo, RunQueryResponse} from "@google-cloud/datastore/build/src/query";
 
 

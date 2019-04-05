@@ -1,9 +1,9 @@
 'use strict';
 
-// import {TapDatastore} from '@datastore-service/datastore';
+// import {TapDatastore} from '@datastore/repository';
 
 import {google} from "@google-cloud/pubsub/build/proto/pubsub";
-import {Logger} from "@shared-service/logging";
+import {Logger} from "@shared/logging";
 import PubsubMessage = google.pubsub.v1.PubsubMessage;
 
 async function create_trip(message: PubsubMessage) {

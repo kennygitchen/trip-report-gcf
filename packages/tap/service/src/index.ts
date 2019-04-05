@@ -1,8 +1,8 @@
 import {Request, Response} from "express";
-import {Tap} from "@datastore-service/model";
-import {TapDatastore} from "@datastore-service/datastore";
-import {sendMessage} from "@shared-service/messaging";
-import {Logger} from '@shared-service/logging';
+import {Tap} from "@datastore/model";
+import {TapDatastore} from "@datastore/repository";
+import {sendMessage} from "@shared/messaging";
+import {Logger} from '@shared/logging';
 
 
 const TOPIC = 'tap-created';

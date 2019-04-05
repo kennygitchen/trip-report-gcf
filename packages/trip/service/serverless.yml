@@ -1,4 +1,4 @@
-service: tap-service--create-tap # NOTE: Don't put the word "google" in here
+service: trip-service # NOTE: Don't put the word "google" in here
 
 provider:
   name: google
@@ -24,10 +24,19 @@ package:
     - .git/**
 
 functions:
-  create_tap:
-    handler: create_tap
+  create_trip:
+    handler: create_trip
     events:
-    - http: path
+    - event:
+        eventType: providers/cloud.pubsub/eventTypes/topic.publish
+        resource: projects/gcf-trip-report/topics/tap-created
+  delete_trip:
+    handler: delete_trip
+    events:
+    - event:
+        eventType: providers/cloud.pubsub/eventTypes/topic.publish
+        resource: projects/gcf-trip-report/topics/tap-created
+
   # NOTE: the following uses an "event" event (pubSub event in this case).
   # Please create the corresponding resources in the Google Cloud
   # before deploying this service through Serverless
@@ -37,12 +46,12 @@ functions:
   #    - event:
   #        eventType: providers/cloud.pubsub/eventTypes/topic.publish
   #        resource: projects/*/topics/my-topic
-
-# you can define resources, templates etc. the same way you would in a
-# Google Cloud deployment configuration
-#resources:
-#  resources:
-#    - type: storage.v1.bucket
-#      name: my-serverless-service-bucket
-#  imports:
-#    - path: my_template.jinja
+  #
+  # you can define resources, templates etc. the same way you would in a
+  # Google Cloud deployment configuration
+  #resources:
+  #  resources:
+  #    - type: storage.v1.bucket
+  #      name: my-serverless-service-bucket
+  #  imports:
+  #    - path: my_template.jinja
