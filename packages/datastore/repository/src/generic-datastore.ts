@@ -40,9 +40,7 @@ abstract class GenericDatastore<EntityObj> {
         const key = this.datastore.key([this.kind, id]);
         try {
             const [entity]: [any] = await this.datastore.get(key);
-
-            console.error(`try to understand: ${JSON.stringify(await this.datastore.get(key))}`);
-            return Promise.resolve(this.createEntityObj(id, entity));
+            return Promise.resolve(this.createEntityObj(entity[Datastore.KEY].id, entity));
         } catch (error) {
             console.error(`ERROR: Unable to retrieve Tap, id=${id}`, error);
             throw error;
@@ -55,7 +53,7 @@ abstract class GenericDatastore<EntityObj> {
                 () => this.datastore.createQuery(this.kind).limit(this.pageSize)
             );
 
-            return entities.map((json: any) => this.createEntityObj(NaN, json));
+            return entities.map((entity: any) => this.createEntityObj(entity[Datastore.KEY].id, entity));
         } catch (error) {
             console.error(`ERROR: Unable to list Taps`, error);
             throw error;
